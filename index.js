@@ -28,29 +28,31 @@ app.set("trust proxy", 1);
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
-// app.use(cookieSession({
-//   path: '/',
-//   sameSite:'none',
-//   secure: false,
-//   maxAge: 24*60*60*1000,
-//   name:'session',
-//   keys:["key1","key2"],
-// }));
+app.use(
+  cookieSession({
+    path: "/",
+    sameSite: "none",
+    secure: false,
+    maxAge: 24 * 60 * 60 * 1000,
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+// app.use(session({
+//   secret: 'keyboard cat',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: true }
+// }))
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
+  "*",
   cors({
-    origin: "https://bblog-blogging.onrender.com",
-    methods: "GET,POST,PUT,DELETE",
+    origin: true,
     credentials: true,
   })
 );
