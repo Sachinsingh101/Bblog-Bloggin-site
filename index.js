@@ -22,7 +22,7 @@ const PORT=process.env.PORT || 6000
 const app = express();
 
 app.use(cookieSession({
-  sameSite:none,
+  sameSite:"none",
   secure:true,
   name:'session',
   maxAge: 24*60*60*1000,
