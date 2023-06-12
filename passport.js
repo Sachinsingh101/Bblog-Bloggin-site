@@ -63,7 +63,7 @@ passport.use(
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "/auth/github/callback",
+    callbackURL: "https://bblog-blogging-site.onrender.com/auth/github/callback",
   },
    (accessToken, refreshToken, profile, done)=>{
     try{
