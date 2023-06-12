@@ -21,13 +21,15 @@ const DATABASE_URL=process.env.DATABASE_URL
 const PORT=process.env.PORT || 6000
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(cookieSession({
-  sameSite:"none",
-  secure:true,
+  path: '/',
+  sameSite: false,
+  secure: false,
+  maxAge: oneDay,
   name:'session',
-  maxAge: 24*60*60*1000,
   keys:["key1","key2"],
-  https:'https://bblog-blogging.onrender.com/'
 }));
 
 app.use(passport.initialize());
