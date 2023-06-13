@@ -1,6 +1,6 @@
 import express from 'express'
 const router=express.Router();
-import passport, { session } from "passport";
+import passport from "passport";
 
 //Google Routes
 
@@ -31,7 +31,7 @@ router.get(
 
 router.get('/api/current_user',(req,res)=>{
     res.send(req.user);
-    console.log(req.user);
+    console.log(req.passport.session.user);
 })
 
 router.get('/api/logout',(req,res)=>{
