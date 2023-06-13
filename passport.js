@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 passport.serializeUser((user,done)=>{
-    done(null,user.id)
+    done(null, user);
     console.log(user)
 })
 
