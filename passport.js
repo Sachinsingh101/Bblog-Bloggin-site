@@ -9,11 +9,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 passport.serializeUser((user,done)=>{
     done(null,user.id)
+    console.log(user)
 })
 
 passport.deserializeUser((id,done)=>{
     User.findById(id).then((user)=>{
         done(null,user)
+        console.log(user)
     })
 })
 
