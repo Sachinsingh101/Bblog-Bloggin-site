@@ -18,7 +18,7 @@ import session from "express-session";
 
 
 dotenv.config();
-const DATABASE_URL=process.env.DATABASE_URL
+const DATABASE_URL=process.env.DATABASE_URL 
 const PORT=process.env.PORT || 6000
 const app = express();
 
@@ -30,12 +30,9 @@ app.use(bodyParser.json());
 
 app.use(
   cookieSession({
-    path: "/",
-    sameSite: "none",
-    secure: false,
     maxAge: 24 * 60 * 60 * 1000,
     name: "session",
-    keys: ["key1", "key2"],
+    keys: ["sachimaas"],
   })
 );
 
@@ -50,19 +47,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
-  "*",
   cors({
-    origin: true,
+    origin:"https://bblog-blogging.onrender.com",
     credentials: true,
+    methods:"GET,POST,PUT,DELETE"
   })
 );
 
 
 ConnectoDb(DATABASE_URL);
 
-app.use(compression());
+// app.use(compression());
 
-app.use(helmet());
+// app.use(helmet());
 
 app.get("/", (req, res) => {
   res.status(403);

@@ -28,6 +28,7 @@ router.get(
 
 router.get('/api/current_user',(req,res)=>{
     res.send(req.user);
+    console.log(req.user);
 })
 
 router.get('/api/logout',(req,res)=>{
