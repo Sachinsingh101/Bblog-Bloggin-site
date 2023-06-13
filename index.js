@@ -41,7 +41,7 @@ app.use(bodyParser.json());
 app.use(session({
   secret:'sachimaass',
   resave:true,
-  saveUninitialized:false
+  saveUninitialized:true
 }))
 
 

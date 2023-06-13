@@ -6,7 +6,6 @@ import passport from "passport";
 
 router.get('/auth/google',passport.authenticate('google',{
     scope:['profile','email'],
-    session:true
   }
 ));
 
@@ -16,9 +15,7 @@ router.get("/auth/callback", passport.authenticate("google"), (req, res) => {
 
 //Github Routes
 
-router.get("/auth/github", passport.authenticate("github",{
-  session:true
-}));
+router.get("/auth/github", passport.authenticate("github"));
 
 router.get(
   "/auth/github/callback",
@@ -31,7 +28,7 @@ router.get(
 
 router.get('/api/current_user',(req,res)=>{
     res.send(req.user);
-    console.log(req.passport.session.user);
+    console.log(req.user);
 })
 
 router.get('/api/logout',(req,res)=>{
