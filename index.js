@@ -2,10 +2,9 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import cookieSession from "cookie-session";
-import compression from 'compression';
+// import cookieSession from "cookie-session";
+// import compression from 'compression';
 import passport from "passport";
-import './Routers/auth.js';
 import "./passport.js";
 import "./Database/modules.js";
 import router from "./Routers/auth.js";
@@ -13,18 +12,26 @@ import postrouter from './Routers/uploadpost.js'
 import blogsRouter from "./Routers/getBlogs.js";
 import likesRouter from "./Routers/likesRoute.js";
 import { ConnectoDb } from "./Database/connet.js";
-import helmet from "helmet";
+// import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 
-
-dotenv.config();
-const DATABASE_URL=process.env.DATABASE_URL 
-const PORT=process.env.PORT || 6000
 const app = express();
 
+app.use(
+  cors({
+    origin:"https://bblog-blogging.onrender.com",
+    credentials: true,
+    methods:"GET,POST,PUT,DELETE"
+  })
+);
 
-app.set("trust proxy", 1);
+
+dotenv.config();
+
+const DATABASE_URL=process.env.DATABASE_URL 
+const PORT=process.env.PORT || 6000
+
 app.use(cookieParser('sachimaass'));
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
@@ -48,14 +55,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
-  cors({
-    origin:"https://bblog-blogging.onrender.com",
-    credentials: true,
-    methods:"GET,POST,PUT,DELETE"
-  })
-);
-
+import './Routers/auth.js';
 
 ConnectoDb(DATABASE_URL);
 
