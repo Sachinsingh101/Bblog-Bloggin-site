@@ -14,6 +14,7 @@ import blogsRouter from "./Routers/getBlogs.js";
 import likesRouter from "./Routers/likesRoute.js";
 import { ConnectoDb } from "./Database/connet.js";
 import helmet from "helmet";
+import cookieParser from "cookie-parser";
 import session from "express-session";
 
 
@@ -24,17 +25,24 @@ const app = express();
 
 
 app.set("trust proxy", 1);
-
+app.use(cookieParser('sachimaass'));
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
-app.use(
-  cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
-    name: "session",
-    keys: ["sachimaas"],
-  })
-);
+// app.use(
+//   cookieSession({
+//     secret:'sachimaass',
+//     resave:true,
+//     maxAge: 24 * 60 * 60 * 1000,
+//     name: "session",
+//     keys: ["sachimaas"],
+//   })
+// );
+app.use(session({
+  secret:'sachimaass',
+  resave:true,
+  saveUninitialized:false
+}))
 
 // app.use(session({
 //   secret: 'keyboard cat',

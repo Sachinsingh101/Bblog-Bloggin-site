@@ -1,11 +1,12 @@
 import express from 'express'
 const router=express.Router();
-import passport from "passport";
+import passport, { session } from "passport";
 
 //Google Routes
 
 router.get('/auth/google',passport.authenticate('google',{
-    scope:['profile','email']
+    scope:['profile','email'],
+    session:true
   }
 ));
 
@@ -15,7 +16,9 @@ router.get("/auth/callback", passport.authenticate("google"), (req, res) => {
 
 //Github Routes
 
-router.get("/auth/github", passport.authenticate("github"));
+router.get("/auth/github", passport.authenticate("github",{
+  session:true
+}));
 
 router.get(
   "/auth/github/callback",
