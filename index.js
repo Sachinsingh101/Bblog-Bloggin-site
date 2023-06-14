@@ -22,18 +22,19 @@ app.use(
   cors({
     // origin:"https://bblog-blogging.onrender.com",
     credentials: true,
-    methods: "GET,POST,PUT,DELETE",
+    methods: ["GET", "POST"],
   })
 );
 
-
 dotenv.config();
 
-const DATABASE_URL=process.env.DATABASE_URL 
-const PORT=process.env.PORT || 6000
+const DATABASE_URL = process.env.DATABASE_URL;
+const PORT = process.env.PORT || 6000;
 
-app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(restify.plugins.queryParser({ mapParams: false }));
 
 app.use(
   cookieSession({
