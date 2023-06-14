@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-// import cookieSession from "cookie-session";
+import cookieSession from "cookie-session";
 // import compression from 'compression';
 import passport from "passport";
 import "./passport.js";
@@ -13,8 +13,8 @@ import blogsRouter from "./Routers/getBlogs.js";
 import likesRouter from "./Routers/likesRoute.js";
 import { ConnectoDb } from "./Database/connet.js";
 // import helmet from "helmet";
-import cookieParser from "cookie-parser";
-import session from "express-session";
+// import cookieParser from "cookie-parser";
+// import session from "express-session";
 
 const app = express();
 
@@ -32,24 +32,16 @@ dotenv.config();
 const DATABASE_URL=process.env.DATABASE_URL 
 const PORT=process.env.PORT || 6000
 
-app.use(cookieParser('sachimaass'));
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
-// app.use(
-//   cookieSession({
-//     secret:'sachimaass',
-//     resave:true,
-//     maxAge: 24 * 60 * 60 * 1000,
-//     name: "session",
-//     keys: ["sachimaas"],
-//   })
-// );
-app.use(session({
-  secret:'sachimaass',
-  resave:true,
-  saveUninitialized:true
-}))
+app.use(
+  cookieSession({
+    name:'session',
+    keys:['key1','key2'],
+    httpOnly:false
+  })
+);
 
 
 app.use(passport.initialize());
