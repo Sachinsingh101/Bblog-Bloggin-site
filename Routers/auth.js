@@ -10,7 +10,7 @@ router.get('/auth/google',passport.authenticate('google',{
 ));
 
 router.get("/auth/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("https://bblog-blogging.onrender.com");
+  res.redirect("/");
 });
 
 //Github Routes
@@ -21,7 +21,7 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github"),
   (req, res) => {
-    res.redirect("https://bblog-blogging.onrender.com");
+    res.redirect("/");
   }
 );
 
@@ -35,7 +35,7 @@ router.get('/api/current_user',(req,res)=>{
 router.get('/api/logout',(req,res)=>{
     req.logout();
     res.status(200).json({logout:'success'});
-    res.redirect("https://bblog-blogging.onrender.com/#/Signup");
+    res.redirect("/#/Signup");
 })
 
 export default router;

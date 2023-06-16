@@ -3,20 +3,25 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cookieSession from "cookie-session";
-// import compression from 'compression';
+import compression from "compression";
 import passport from "passport";
 import "./passport.js";
 import "./Database/modules.js";
 import router from "./Routers/auth.js";
-import postrouter from './Routers/uploadpost.js'
+import postrouter from "./Routers/uploadpost.js";
 import blogsRouter from "./Routers/getBlogs.js";
 import likesRouter from "./Routers/likesRoute.js";
 import { ConnectoDb } from "./Database/connet.js";
-// import helmet from "helmet";
+import helmet from "helmet";
+import path from "path";
 // import cookieParser from "cookie-parser";
 // import session from "express-session";
 
 const app = express();
+app.use(express.static(path.join(__dirname, "views")));
+app.get("/", () => {
+  res.sendFile(path.join(__dirname, "views", index.html));
+});
 
 app.use(
   cors({
@@ -34,27 +39,24 @@ const PORT = process.env.PORT || 6000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(restify.plugins.queryParser({ mapParams: false }));
-
 app.use(
   cookieSession({
-    name:'session',
-    keys:['key1','key2'],
-    httpOnly:false
+    name: "session",
+    keys: ["key1", "key2"],
+    httpOnly: false,
   })
 );
-
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-import './Routers/auth.js';
+import "./Routers/auth.js";
 
 ConnectoDb(DATABASE_URL);
 
-// app.use(compression());
+app.use(compression());
 
-// app.use(helmet());
+app.use(helmet());
 
 app.get("/", (req, res) => {
   res.status(403);

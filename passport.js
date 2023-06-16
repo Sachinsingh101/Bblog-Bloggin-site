@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 passport.serializeUser((user,done)=>{
-    done(null, user);
+    done(null, user.id);
     console.log(user)
 })
 
@@ -65,7 +65,7 @@ passport.use(
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://bblog-blogging-site.onrender.com/auth/github/callback",
+    callbackURL: "/auth/github/callback",
   },
    (accessToken, refreshToken, profile, done)=>{
     try{
