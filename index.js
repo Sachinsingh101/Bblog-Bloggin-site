@@ -18,7 +18,7 @@ import path from "path";
 // import session from "express-session";
 
 const app = express();
-app.use(express.static(path.join(__dirname, "views")));
+app.use(express.static("views"));
 app.get("/", () => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
@@ -33,7 +33,8 @@ app.use(
 
 dotenv.config();
 
-const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_URL =
+  "mongodb+srv://Sachin:Sachimaa.123@cluster0.2jeodxz.mongodb.net/?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 6000;
 
 app.use(bodyParser.json());
