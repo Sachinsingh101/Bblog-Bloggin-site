@@ -62,36 +62,38 @@ passport.use(
 
 //Github Strategy
 
-passport.use(new GitHubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "/auth/github/callback",
-  },
-   (accessToken, refreshToken, profile, done)=>{
-    try{
-        User.findOne({userId:profile.id})
-        .then((existingUser)=>{
-           if(existingUser){
-               done(null,existingUser);
-           }else{
-                new User({
-                   userId:profile.id,
-                   username:profile.displayName,
-                   email:profile._json.blog,
-                   picture:profile.photos[0].value,
-               }).save()
-               .then((user)=>{
-                   done(null,user);
-                   // console.log(user);
-               })
-           }
-        })
-    }catch(err){
-        console.log("Error while handlign Signup Signin callback passport !!")
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
+      callbackURL:
+        "https://bblog-blogging-site.onrender.com/auth/github/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      try {
+        User.findOne({ userId: profile.id }).then((existingUser) => {
+          if (existingUser) {
+            done(null, existingUser);
+          } else {
+            new User({
+              userId: profile.id,
+              username: profile.displayName,
+              email: profile._json.blog,
+              picture: profile.photos[0].value,
+            })
+              .save()
+              .then((user) => {
+                done(null, user);
+                // console.log(user);
+              });
+          }
+        });
+      } catch (err) {
+        console.log("Error while handlign Signup Signin callback passport !!");
+      }
     }
-  }
-
-  
-));
+  )
+);
 
 

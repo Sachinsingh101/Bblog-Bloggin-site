@@ -34,7 +34,6 @@ router.get('/api/current_user',(req,res)=>{
 
 router.get('/api/logout',(req,res)=>{
     req.logout();
-    res.status(200).json({logout:'success'});
     res.redirect("/#/Signup");
 })
 

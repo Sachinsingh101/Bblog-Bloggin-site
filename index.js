@@ -14,8 +14,7 @@ import likesRouter from "./Routers/likesRoute.js";
 import { ConnectoDb } from "./Database/connet.js";
 import helmet from "helmet";
 import path from "path";
-// import cookieParser from "cookie-parser";
-// import session from "express-session";
+
 
 const app = express();
 app.use(express.static("views"));
@@ -25,7 +24,6 @@ app.get("/", () => {
 
 app.use(
   cors({
-    // origin:"https://bblog-blogging.onrender.com",
     credentials: true,
     methods: ["GET", "POST"],
   })
