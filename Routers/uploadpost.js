@@ -35,6 +35,7 @@ postrouter.post("/publish-blog",upload.single('image'), async (req, res) => {
       blogmodel.save();
       console.log("Blog published successfully");
     });
+    
   } catch (err) {
     console.log("error while publishing a blog", err);
   }
