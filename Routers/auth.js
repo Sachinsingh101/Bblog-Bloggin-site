@@ -10,7 +10,7 @@ router.get('/auth/google',passport.authenticate('google',{
 ));
 
 router.get("/auth/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("https://revcode.onrender.com/");
+  res.redirect("https://revcode.onrender.com");
 });
 
 //Github Routes
@@ -21,7 +21,7 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github"),
   (req, res) => {
-    res.redirect("https://revcode.onrender.com/");
+    res.redirect("https://revcode.onrender.com");
   }
 );
 
