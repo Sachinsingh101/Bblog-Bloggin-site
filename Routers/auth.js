@@ -10,7 +10,7 @@ router.get('/auth/google',passport.authenticate('google',{
 ));
 
 router.get("/auth/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("/");
+  res.redirect("https://revcode.onrender.com/");
 });
 
 //Github Routes
@@ -21,7 +21,7 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github"),
   (req, res) => {
-    res.redirect("/");
+    res.redirect("https://revcode.onrender.com/");
   }
 );
 
@@ -29,12 +29,11 @@ router.get(
 router.get('/api/current_user',(req,res)=>{
     res.send(req.user);
     console.log(req.user);
-    console.log(req.session);
+    // res.redirect("http://localhost:5173/");
 })
 
 router.get('/api/logout',(req,res)=>{
     req.logout();
-    res.redirect("/#/Signup");
 })
 
 export default router;

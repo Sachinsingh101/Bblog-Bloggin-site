@@ -19,17 +19,17 @@ passport.deserializeUser((id,done)=>{
 
 //Google Strategy
 
-const googleClientID=process.env.googleClientID;
-const googleClientSecret=process.env.googleClientSecret;
-const GITHUB_CLIENT_ID=process.env.GITHUB_CLIENT_ID;
-const GITHUB_CLIENT_SECRET=process.env.GITHUB_CLIENT_SECRET;
+const googleClientID="692897615557-f14d8ekeg070pj1gvrsn34883gqh3p3o.apps.googleusercontent.com";
+const googleClientSecret="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";
+const GITHUB_CLIENT_ID="53de6f9a221e5269f363";
+const GITHUB_CLIENT_SECRET="d66ade60b3e6f2c25cbd7b0e8cf230d750fa0a0c";
 
 
 passport.use(
     new GoogleStrategy({
         clientID:googleClientID,
         clientSecret:googleClientSecret,
-        callbackURL:"/auth/callback",
+        callbackURL:"https://revcode.onrender.com/auth/callback",
         proxy:true,
     },
     (accessToken, refreshToken, profile,done)=>{
@@ -66,7 +66,7 @@ passport.use(
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
       callbackURL:
-        "https://bblog-blogging-site.onrender.com/auth/github/callback",
+        "https://revcode.onrender.com/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       try {

@@ -4,10 +4,10 @@ import { Blogmodel, User } from '../Database/modules.js';
 
 blogsRouter.get('/getblogs',async(req,res)=>{
     try{
-        const blogs=await Blogmodel.find(); 
+        const blogs=await Blogmodel.find();
         res.send(blogs);
     }catch(err){
-        console.log("error in fetching blogs");
+        console.log("error in fetching blogs");rs
     }
 })
 blogsRouter.get('/getsingleblog/:id',async(req,res)=>{
