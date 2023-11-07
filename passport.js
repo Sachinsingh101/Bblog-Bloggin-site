@@ -29,7 +29,7 @@ passport.use(
     new GoogleStrategy({
         clientID:googleClientID,
         clientSecret:googleClientSecret,
-        callbackURL:"https://revcode-service.onrender.com/auth/callback",
+        callbackURL:"/auth/callback",
         proxy:true,
     },
     (accessToken, refreshToken, profile,done)=>{
@@ -66,7 +66,7 @@ passport.use(
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
       callbackURL:
-        "https://revcode-service.onrender.com/auth/github/callback",
+        "/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       try {
