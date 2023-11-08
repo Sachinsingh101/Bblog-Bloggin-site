@@ -23,13 +23,19 @@ dotenv.config();
 
 ConnectoDb(DATABASE_URL);
 
-app.use(
-  cors({
-    origin:["https://revcode.onrender.com"],
-    credentials: true,
-    // methods: ["GET", "POST"],
-  })
-);
+header("Access-Control-Allow-Origin: https://revcode.onrender.com");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, *");
+
+// app.use(
+//   cors({
+//     origin:"https://revcode.onrender.com",
+//     credentials: true,
+//     // methods: ["GET", "POST"],
+//   })
+// );
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
